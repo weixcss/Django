@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Random Quote{% endblock %} <!-- webpage title -->
+
+{% block content %}
+    <h2>Quote of the Day</h2>
+
+    <!-- uses the quote(request) function from views.py to choose quote + image for context-->
+    <!-- {{ image }} returns /static/images/person3.jpg in the <p></p> tag -->
+    <p>{{ quote }} </p> 
+
+    <img src="{{ image }}" alt="Famous Person"> <!-- 'image': selectedImage from context in quote(request) returns e.g. person1.jpg -->
+{% endblock %}

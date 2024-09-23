@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>{% block title %}Quote of the Day{% endblock %}</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Quote of the Day</h1>
+      <nav>
+        <ul>
+          <li><a href="/quotes">Home</a></li>
+          <li><a href="/quotes/quote">Random Quote</a></li>
+          <li><a href="/quotes/show_all/">Show All Quotes</a></li>
+          <li><a href="/quotes/about/">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>{% block content %} {% endblock %}</main>
+
+    <footer>
+      <p>Created by Wei Zhu</p>
+    </footer>
+  </body>
+</html>
