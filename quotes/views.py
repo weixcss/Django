@@ -21,7 +21,7 @@ def quote(request):
         'quote': selectedQuote,
         'image': selectedImage
     }
-    return render(request, 'quote.html', context)
+    return render(request, 'quotes/quote.html', context)
 
 # View for (/quotes/show_all)
 def show_all(request):
@@ -29,8 +29,8 @@ def show_all(request):
         'quotes': quotes,
         'images': images
     }
-    return render(request, 'show_all.html', context)
+    return render(request, 'quotes/show_all.html', context)
 
 # View for (/quotes/about)
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'quotes/about.html')
