@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cs412app.apps.Cs412AppConfig',
+    'quotes.apps.QuotesConfig',
 ]
 
 MIDDLEWARE = [
