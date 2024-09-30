@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quotes.apps.QuotesConfig',
     "formdata",
+    "restaurant",
 ]
 
 MIDDLEWARE = [
