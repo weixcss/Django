@@ -2,17 +2,32 @@
 {% load static %}
 
 {% block content %}
-<div class="content">
+<div class="confirmation-content">
     <h2>Order Confirmation</h2>
-    <p>Thank you, {{ customer_info.name }}! Your order has been placed and will be ready by {{ ready_time }}.</p>
-    <h3>Ordered items:</h3>
-    <ul>
-        {% for item, price in ordered_items %}
-        <li>{{ item }} - ${{ price }}</li>
-        {% endfor %}
-    </ul>
-    <p>Total Price: ${{ total_price }}</p>
-    <p>Special Instructions: {{ special_instructions }}</p>  <!-- Display special instructions -->
-    <p>If you need to make changes to your order, please call us at {{ customer_info.phone }}.</p>
+    <p>Thank you, {{ customer_info.name }}! Your order has been placed at {{ current_time }} and will be ready by {{ ready_time }}.</p>
+
+    <section class="customer-info">
+        <h3>Customer Information:</h3>
+        <p>Name: {{ customer_info.name }}</p>
+        <p>Phone: {{ customer_info.phone }}</p>
+        <p>Email: {{ customer_info.email }}</p>
+    </section>
+
+    <section class="ordered-items">
+        <h3>Ordered items:</h3>
+        <ul>
+            {% for item, price in ordered_items %}
+            <li>{{ item }} - ${{ price }}</li>
+            {% endfor %}
+        </ul>
+        <p>Total Price: ${{ total_price }}</p>
+    </section>
+
+    <section class="special-instructions">
+        <h3>Special Instructions</h3>
+        <p>{{ special_instructions }}</p>
+    </section>
+
+    <p>If you need to make changes to your order, please call us at 646-643-3226.</p>
 </div>
 {% endblock %}

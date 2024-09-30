@@ -6,14 +6,14 @@
 }
 
 html, body {
-  height: 100%; /* Ensure full height for the body */
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
   line-height: 1.6;
   background-color: #f4f4f4;
   color: #333;
@@ -44,53 +44,67 @@ nav a {
   font-size: 1.2em;
 }
 
-/* Main Content Styling */
-.content {
-  flex: 1; /* Flex grow to take available space */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically if less */
-  padding: 20px;
+/* /main /order /confirmation Content Styling */
+.main-content, .order-content, .confirmation-content {
   max-width: 960px;
   width: 100%;
-  margin: auto; /* Center horizontally */
+  margin: auto;
+  padding: 20px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  text-align: center;
+}
+
+.order-content, .confirmation-content {
   text-align: left;
 }
 
-/* Footer */
-footer {
-  margin-top: auto; /* Push footer to the bottom */
-  padding: 10px 0;
-  width: 100%;
-}
-
-/* Image Styling */
-img {
-  width: 80%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  display: block;
-  margin: 20px auto;
-}
-
-/* Form Styling */
-form {
-  margin-top: 20px;
-}
-
-input[type="text"],
-input[type="email"],
-textarea, 
-input[type="checkbox"] {
-  padding: 10px;
-  margin-top: 5px;
-  width: 100%;
-  border: 1px solid #ccc;
+.order-content button[type="submit"], button {
+  font-size: 1.25em;
+  padding: 15px 30px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  cursor: pointer;
   border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #449d44;
+}
+
+/* Section Styling within Confirmation Content */
+.confirmation-content .customer-info, 
+.confirmation-content .ordered-items, 
+.confirmation-content .special-instructions {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.confirmation-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.confirmation-content li {
+  line-height: 1.6;
+  padding: 5px 0;
+}
+
+img, form, input[type="text"], input[type="email"], textarea, input[type="checkbox"], fieldset, legend, label {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 input[type="checkbox"] {
@@ -99,10 +113,8 @@ input[type="checkbox"] {
 }
 
 fieldset {
-  border: 2px solid #ccc;
   margin-top: 20px;
   padding: 10px 20px;
-  border-radius: 8px;
 }
 
 legend {
@@ -116,51 +128,18 @@ label {
   margin: 10px 0 5px;
 }
 
-button {
-  background-color: #5cb85c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: block;
-  width: 100%;
-}
-
-button:hover {
-  background-color: #449d44;
-}
-
-/* List Styling for Confirmation Page */
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li {
-  padding: 5px 0;
-  border-bottom: 1px solid #eee;
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-/* Responsive Design Adjustments */
 @media (max-width: 768px) {
-  header, nav ul, nav ul li {
-      text-align: center;
-      width: 100%;
+  nav ul li, button {
+    display: block;
+    margin-top: 10px;
+    width: auto;
   }
 
-  nav ul li {
-      display: block;
-      margin-top: 10px;
+  header, nav ul, nav ul li, .confirmation-content {
+    text-align: center;
   }
 
-  button {
-      width: auto;
-      display: inline-block;
+  .confirmation-content h2, .confirmation-content h3 {
+    margin-top: 10px;
   }
 }

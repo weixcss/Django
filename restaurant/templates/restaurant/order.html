@@ -2,20 +2,32 @@
 {% load static %}
 
 {% block content %}
-<div class="content">
+<div class="order-content">
     <h2>Order Online</h2>
     <form action="{% url 'confirmation' %}" method="post">
         {% csrf_token %}
         <fieldset>
             <legend>Choose Your Meals</legend>
-            <label><input type="checkbox" name="menu_item" value="Pizza">$10 Pizza
-            <input type="hidden" name="item_price" value="10"></label>
-            <label><input type="checkbox" name="menu_item" value="Pasta">$12 Pasta
-            <input type="hidden" name="item_price" value="12"></label>
-            <label><input type="checkbox" name="menu_item" value="Burger">$8 Burger
-            <input type="hidden" name="item_price" value="8"></label>
-            <label><input type="checkbox" name="menu_item" value="{{ special_item }}">$15 {{ special_item }}
-            <input type="hidden" name="item_price" value="15"></label>
+            <label>
+                <input type="checkbox" name="menu_item" value="Pizza">
+                $10 Pizza
+                <input type="hidden" name="item_price_Pizza" value="10">
+            </label>
+            <label>
+                <input type="checkbox" name="menu_item" value="Pasta">
+                $12 Pasta
+                <input type="hidden" name="item_price_Pasta" value="12">
+            </label>
+            <label>
+                <input type="checkbox" name="menu_item" value="Burger">
+                $8 Burger
+                <input type="hidden" name="item_price_Burger" value="8">
+            </label>
+            <label>
+                <input type="checkbox" name="menu_item" value="{{ special_item }}">
+                $15 {{ special_item }}
+                <input type="hidden" name="item_price_{{ special_item }}" value="15">
+            </label>
         </fieldset>
         <fieldset>
             <legend>Contact</legend>
