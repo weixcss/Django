@@ -1,18 +1,22 @@
 /* Basic Resets */
-body, h1, h2, p, ul, li, form, input, button, textarea, fieldset, legend {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Font and Background */
-body {
+html, body {
+  height: 100%; /* Ensure full height for the body */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
   line-height: 1.6;
   background-color: #f4f4f4;
   color: #333;
-  padding: 20px;
-  text-align: center; /* Center text for the whole body */
 }
 
 /* Header and Footer Styling */
@@ -20,19 +24,13 @@ header, footer {
   background-color: #35424a;
   color: #ffffff;
   padding: 20px 0;
-  text-align: center; /* Ensures text in header and footer is centered */
-}
-
-header h1 {
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 /* Navigation Styling */
 nav ul {
   list-style-type: none;
   padding: 0;
-  display: inline-block; /* Center the list by making it inline-block */
-  margin: 0 auto; /* Auto margins for horizontal centering */
 }
 
 nav ul li {
@@ -46,51 +44,51 @@ nav a {
   font-size: 1.2em;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px 0;
-  background-color: #35424a;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
 /* Main Content Styling */
 .content {
-  margin: 20px auto;
-  max-width: 960px;
-  background: white;
+  flex: 1; /* Flex grow to take available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically if less */
   padding: 20px;
+  max-width: 960px;
+  width: 100%;
+  margin: auto; /* Center horizontally */
+  background: white;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center; /* Ensure text and other elements are centered within the content */
+  text-align: left;
+}
+
+/* Footer */
+footer {
+  margin-top: auto; /* Push footer to the bottom */
+  padding: 10px 0;
+  width: 100%;
 }
 
 /* Image Styling */
 img {
-  width: 80%; /* Adjust width to make the image less dominating */
+  width: 80%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  display: block; /* Makes it block to apply margin */
-  margin: 20px auto; /* Center the image horizontally and give some top and bottom space */
+  display: block;
+  margin: 20px auto;
 }
 
 /* Form Styling */
 form {
   margin-top: 20px;
-  text-align: left; /* Align form fields text to the left */
-  display: inline-block; /* Makes form centered in the content area */
-  width: 100%; /* Full width of the content area */
 }
 
 input[type="text"],
 input[type="email"],
-textarea {
-  width: 100%;
+textarea, 
+input[type="checkbox"] {
   padding: 10px;
   margin-top: 5px;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -126,9 +124,8 @@ button {
   margin-top: 10px;
   cursor: pointer;
   border-radius: 4px;
-  font-size: 1.1em;
   display: block;
-  width: 100%; /* Full width of the form */
+  width: 100%;
 }
 
 button:hover {
@@ -139,7 +136,6 @@ button:hover {
 ul {
   list-style-type: none;
   padding-left: 0;
-  text-align: left; /* Align list text to the left */
 }
 
 li {

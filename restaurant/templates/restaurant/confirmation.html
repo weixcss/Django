@@ -9,8 +9,8 @@
         <p>Your order has been placed and will be ready by {{ ready_time }}.</p>
         <h3>Ordered items:</h3>
         <ul>
-            {% for item in ordered_items %}
-            <li>{{ item }}</li>
+            {% for item, price in items_ordered %}
+            <li>{{ item }} - ${{ price }}</li>
             {% endfor %}
         </ul>
         <p>Total Price: ${{ total_price }}</p>

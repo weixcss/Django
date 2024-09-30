@@ -8,10 +8,10 @@
         {% csrf_token %}
         <fieldset>
             <legend>Choose Your Meals</legend>
-            <label><input type="checkbox" name="menu_item" value="Pizza">$10 Pizza</label>
-            <label><input type="checkbox" name="menu_item" value="Pasta">$12 Pasta</label>
-            <label><input type="checkbox" name="menu_item" value="Burger">$8 Burger</label>
-            <label><input type="checkbox" name="menu_item" value="{{ special_item }}">$15 {{ special_item }}</label>
+            <label><input type="checkbox" name="menu_item" value="Pizza" data-price="10">$10 Pizza</label>
+            <label><input type="checkbox" name="menu_item" value="Pasta" data-price="12">$12 Pasta</label>
+            <label><input type="checkbox" name="menu_item" value="Burger" data-price="8">$8 Burger</label>
+            <label><input type="checkbox" name="menu_item" value="{{ special_item }}" data-price="15">$15 {{ special_item }}</label>
         </fieldset>
         <fieldset>
             <legend>Your Information</legend>
