@@ -8,16 +8,20 @@
         {% csrf_token %}
         <fieldset>
             <legend>Choose Your Meals</legend>
-            <label><input type="checkbox" name="menu_item" value="Pizza" data-price="10">$10 Pizza</label>
-            <label><input type="checkbox" name="menu_item" value="Pasta" data-price="12">$12 Pasta</label>
-            <label><input type="checkbox" name="menu_item" value="Burger" data-price="8">$8 Burger</label>
-            <label><input type="checkbox" name="menu_item" value="{{ special_item }}" data-price="15">$15 {{ special_item }}</label>
+            <label><input type="checkbox" name="menu_item" value="Pizza">$10 Pizza
+            <input type="hidden" name="item_price" value="10"></label>
+            <label><input type="checkbox" name="menu_item" value="Pasta">$12 Pasta
+            <input type="hidden" name="item_price" value="12"></label>
+            <label><input type="checkbox" name="menu_item" value="Burger">$8 Burger
+            <input type="hidden" name="item_price" value="8"></label>
+            <label><input type="checkbox" name="menu_item" value="{{ special_item }}">$15 {{ special_item }}
+            <input type="hidden" name="item_price" value="15"></label>
         </fieldset>
         <fieldset>
-            <legend>Your Information</legend>
-            <label for="name">Name:</label>
+            <legend>Contact</legend>
+            <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
-            <label for="phone">Phone:</label>
+            <label for="phone">Mobile Number:</label>
             <input type="text" id="phone" name="phone" required>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -26,7 +30,7 @@
             <legend>Special Instructions</legend>
             <textarea id="instructions" name="instructions" rows="4"></textarea>
         </fieldset>
-        <button type="submit">Place Order</button>
+        <button type="submit">Submit Order</button>
     </form>
 </div>
 {% endblock %}

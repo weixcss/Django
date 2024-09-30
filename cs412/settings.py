@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Directory for collecting static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 
 # Add any static files directories if needed
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
