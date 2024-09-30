@@ -1,0 +1,25 @@
+{% load static %}  <!-- Load the static files library -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Restaurant</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'main' %}">Home</a></li>
+                <li><a href="{% url 'order' %}">Order Online</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <p>Copyright © Your Restaurant 2023</p>
+    </footer>
+</body>
+</html>

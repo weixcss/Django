@@ -1,0 +1,32 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <h2>Order Online</h2>
+    <form action="{% url 'confirmation' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Choose Your Meals</legend>
+            <label><input type="checkbox" name="menu_item" value="Pizza">$10 Pizza</label>
+            <label><input type="checkbox" name="menu_item" value="Pasta">$12 Pasta</label>
+            <label><input type="checkbox" name="menu_item" value="Burger">$8 Burger</label>
+            <label><input type="checkbox" name="menu_item" value="{{ special_item }}">$15 {{ special_item }}</label>
+        </fieldset>
+        <fieldset>
+            <legend>Your Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </fieldset>
+        <fieldset>
+            <legend>Special Instructions</legend>
+            <textarea id="instructions" name="instructions" rows="4"></textarea>
+        </fieldset>
+        <button type="submit">Place Order</button>
+    </form>
+</div>
+{% endblock %}

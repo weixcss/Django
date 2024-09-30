@@ -2,5 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('restaurant/', views.quote, name='restaurant'),  # http://127.0.0.1:8000/restaurant/
+    path('main/', views.main, name='main'),
+    path('order/', views.order, name='order'),
+    path('confirmation/', views.confirmation, name='confirmation'),
 ]

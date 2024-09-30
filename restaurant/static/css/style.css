@@ -1,0 +1,170 @@
+/* Basic Resets */
+body, h1, h2, p, ul, li, form, input, button, textarea, fieldset, legend {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Font and Background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+  text-align: center; /* Center text for the whole body */
+}
+
+/* Header and Footer Styling */
+header, footer {
+  background-color: #35424a;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center; /* Ensures text in header and footer is centered */
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+/* Navigation Styling */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: inline-block; /* Center the list by making it inline-block */
+  margin: 0 auto; /* Auto margins for horizontal centering */
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #35424a;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Main Content Styling */
+.content {
+  margin: 20px auto;
+  max-width: 960px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center; /* Ensure text and other elements are centered within the content */
+}
+
+/* Image Styling */
+img {
+  width: 80%; /* Adjust width to make the image less dominating */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  display: block; /* Makes it block to apply margin */
+  margin: 20px auto; /* Center the image horizontally and give some top and bottom space */
+}
+
+/* Form Styling */
+form {
+  margin-top: 20px;
+  text-align: left; /* Align form fields text to the left */
+  display: inline-block; /* Makes form centered in the content area */
+  width: 100%; /* Full width of the content area */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+fieldset {
+  border: 2px solid #ccc;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1.1em;
+  display: block;
+  width: 100%; /* Full width of the form */
+}
+
+button:hover {
+  background-color: #449d44;
+}
+
+/* List Styling for Confirmation Page */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  text-align: left; /* Align list text to the left */
+}
+
+li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  header, nav ul, nav ul li {
+      text-align: center;
+      width: 100%;
+  }
+
+  nav ul li {
+      display: block;
+      margin-top: 10px;
+  }
+
+  button {
+      width: auto;
+      display: inline-block;
+  }
+}
