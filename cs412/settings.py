@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'quotes.apps.QuotesConfig',
     "formdata",
     "restaurant",
+    "mini_fb",
 ]
 
 MIDDLEWARE = [
