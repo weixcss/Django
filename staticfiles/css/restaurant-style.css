@@ -1,0 +1,145 @@
+/* Basic Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Header and Footer Styling */
+header, footer {
+  background-color: #35424a;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Navigation Styling */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+/* /main /order /confirmation Content Styling */
+.main-content, .order-content, .confirmation-content {
+  max-width: 960px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  text-align: center;
+}
+
+.order-content, .confirmation-content {
+  text-align: left;
+}
+
+.order-content button[type="submit"], button {
+  font-size: 1.25em;
+  padding: 15px 30px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #449d44;
+}
+
+/* Section Styling within Confirmation Content */
+.confirmation-content .customer-info, 
+.confirmation-content .ordered-items, 
+.confirmation-content .special-instructions {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.confirmation-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.confirmation-content li {
+  line-height: 1.6;
+  padding: 5px 0;
+}
+
+img, form, input[type="text"], input[type="email"], textarea, input[type="checkbox"], fieldset, legend, label {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+fieldset {
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+@media (max-width: 768px) {
+  nav ul li, button {
+    display: block;
+    margin-top: 10px;
+    width: auto;
+  }
+
+  header, nav ul, nav ul li, .confirmation-content {
+    text-align: center;
+  }
+
+  .confirmation-content h2, .confirmation-content h3 {
+    margin-top: 10px;
+  }
+}
