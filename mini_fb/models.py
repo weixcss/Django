@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
 
@@ -24,3 +26,34 @@ class Profile(models.Model):
         Returns a string of the user's first name and last name.
         """
         return f"{self.first_name} {self.last_name}"
+    
+    def get_status_messages(self):
+        """
+        Returns all status messages for this profile, ordered by timestamp (most recent first).
+        """
+        return self.status_messages.all().order_by('-timestamp')
+    
+    def get_absolute_url(self):
+        """
+        Returns the URL to view this profile.
+        """
+        return reverse('show_profile', kwargs={'pk': self.pk})
+
+class StatusMessage(models.Model):
+    """
+    A model representing a status message posted by a user.
+
+    Attributes:
+    - timestamp: the time when the message was created (automatically set).
+    - message: the text of the status message.
+    - profile: a foreign key that links the message to a user's profile.
+    """
+    timestamp = models.DateTimeField(default=timezone.now)
+    message = models.TextField()
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='status_messages')
+
+    def __str__(self):
+        """
+        Returns a string of the timestamp and message.
+        """
+        return f"Message at {self.timestamp}: {self.message}"

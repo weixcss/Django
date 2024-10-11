@@ -1,13 +1,14 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #f0f2f5;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-header, footer {
-  background-color: #4267B2;
+header,
+footer {
+  background-color: #4267b2;
   color: white;
   padding: 10px 0;
 }
@@ -29,6 +30,153 @@ main {
   margin: 0 auto;
 }
 
+/* Form Container Styling */
+.form-container {
+  max-width: 600px;
+  margin: 20px auto; /* top and bottom: 20px, right and left: auto (entire form container) */ 
+  padding: 20px 60px 20px 40px; /* top: 20px, right: 60px, bottom: 20px, left: 40px (content inside form container)*/ 
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+}
+.submit-btn:hover {
+  background-color: #365899;
+}
+
+/* Back Link Styling */
+.back-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1em;
+  color: #4267b2;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+button:hover {
+  background-color: #365899;
+}
+
+/* Profile Section */
+/* Profile Container Styling */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Profile Table Styling */
+.profile-table {
+  width: 100%;
+  margin-bottom: 30px;
+  border-spacing: 10px;
+}
+
+/* Status Messages Section */
+.status-messages-section {
+  margin-top: 30px;
+}
+
+.status-messages-section h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.status-message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between messages */
+}
+
+.status-message {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.status-message p {
+  margin: 5px 0 0;
+}
+
+/* Remove bullet points */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Action Button Styling */
+.action-links {
+  display: flex;
+  justify-content: center; /* Centers the buttons horizontally */
+  gap: 20px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: #4267B2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #365899;
+}
+
 /* Table Styling */
 table {
   border-collapse: collapse;
@@ -39,11 +187,12 @@ table {
 }
 
 thead {
-  background-color: #4267B2;
+  background-color: #4267b2;
   color: white;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -61,45 +210,47 @@ img {
   object-fit: cover;
 }
 
-button, a {
-  background-color: #4267B2;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover, a:hover {
-  background-color: #365899;
-}
-
 footer {
-  position: absolute;
   width: 100%;
-  bottom: 0;
   padding: 10px;
   font-size: 0.9em;
+  text-align: center;
+  margin-top: 20px; /* Adds spacing between the footer and content */
 }
 
 @media (max-width: 768px) {
   table {
-      width: 100%;
+    width: 100%;
   }
 
-  th, td {
-      padding: 10px;
+  th,
+  td {
+    padding: 10px;
   }
+}
+
+/* Navigation */
+/* Navigation Bar Styling */
+nav {
+  background-color: #4267b2;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
+  display: inline-block;
   margin: 0 15px;
   color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1em;
   text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  background-color: #365899;
 }
-

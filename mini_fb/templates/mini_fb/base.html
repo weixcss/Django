@@ -16,6 +16,8 @@
 
     <nav>
       <!-- Navigation bar -->
+      <a href="{% url 'show_all_profiles' %}">View All Profiles</a>
+      <a href="{% url 'create_profile' %}">Create New Profile</a>
     </nav>
 
     <main>{% block content %} {% endblock %}</main>
