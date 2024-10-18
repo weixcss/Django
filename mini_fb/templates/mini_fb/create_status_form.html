@@ -4,11 +4,19 @@
 <div class="form-container">
   <h2>Post a Status Message for {{ profile.first_name }} {{ profile.last_name }}</h2>
 
-  <form method="POST">
+  <!-- enctype for file uploads -->
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       {{ form.as_p }}
     </div>
+
+    <!-- input for uploading images -->
+    <div class="form-group">
+      <label for="files">Upload Image(s):</label>
+      <input type="file" name="files" multiple />
+    </div>
+
     <button type="submit" class="submit-btn">Post Status</button>
   </form>
 

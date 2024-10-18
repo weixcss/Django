@@ -36,6 +36,17 @@
       <div class="status-message">
         <strong>{{ status.timestamp }}</strong><br>
         <p>{{ status.message }}</p>
+        
+        <!-- Display images if they exist -->
+        {% for img in status.get_images %}
+        <img src="{{ img.image_file.url }}" alt="Image for status" class="status-image">
+        {% endfor %}
+
+        <!-- Links for updating and deleting the status message -->
+        <div class="status-message-buttons">
+          <a href="{% url 'update_status' status.pk %}" class="action-link">Update</a>
+          <a href="{% url 'delete_status' status.pk %}" class="action-link">Delete</a>
+        </div>
       </div>
       {% empty %}
       <p>No status messages available.</p>
@@ -46,6 +57,7 @@
   <div class="action-links">
     <a href="{% url 'create_status' profile.pk %}" class="action-button">Post a New Status</a>
     <a href="{% url 'show_all_profiles' %}" class="action-button">Back to All Profiles</a>
+    <a href="{% url 'update_profile' profile.pk %}" class="action-button">Update Profile</a>
   </div>
 </div>
 {% endblock %}

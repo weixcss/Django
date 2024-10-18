@@ -149,10 +149,42 @@ button:hover {
   margin: 5px 0 0;
 }
 
+/* Styling for status images */
+.status-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.status-message-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: 15px; /* Space between the Update and Delete buttons */
+  margin-top: 10px; /* Space between the image and buttons */
+}
+
 /* Remove bullet points */
 ul {
   list-style: none;
   padding-left: 0;
+}
+
+.action-link {
+  padding: 10px 20px;
+  background-color: #4267B2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Button shadow effect */
+}
+
+.action-link:hover {
+  background-color: #365899; /* Darker background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
 /* Action Button Styling */

@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.urls import reverse
 
 # Create your models here.
-
 class Profile(models.Model):
     """
     A model representing a user's profile with personal details.
@@ -57,3 +56,28 @@ class StatusMessage(models.Model):
         Returns a string of the timestamp and message.
         """
         return f"Message at {self.timestamp}: {self.message}"
+    
+    def get_images(self):
+        """
+        Returns all images associated with this status message.
+        """
+        return self.images.all()  # 'images' comes from related_name in Image model
+    
+class Image(models.Model):
+    """
+    Model representing an image uploaded for a status message.
+    
+    Attributes:
+    - image_file: the image file stored in the media directory.
+    - status_message: a foreign key linking the image to a specific status message.
+    - timestamp: the time the image was uploaded.
+    """
+    image_file = models.ImageField(upload_to='status_images/')
+    status_message = models.ForeignKey('StatusMessage', on_delete=models.CASCADE, related_name='images')
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        """
+        Returns the string representation of the image with the timestamp.
+        """
+        return f"Image uploaded at {self.timestamp}"
