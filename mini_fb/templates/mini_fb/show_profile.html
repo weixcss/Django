@@ -54,10 +54,30 @@
     </div>
   </div>
 
+  <!-- Friends Section -->
+  <div class="friends-section">
+    <h3>Friends</h3>
+    <ul>
+      {% for friend in profile.get_friends %}
+      <li>
+        <a href="{% url 'show_profile' friend.pk %}" class="friend-profile">
+          <img src="{{ friend.profile_image_url }}" alt="{{ friend.first_name }}'s Profile Picture" class="friend-image">
+          <span>{{ friend.first_name }} {{ friend.last_name }}</span>
+        </a>
+      </li>
+      {% empty %}
+      <li>This profile has no friends yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
   <div class="action-links">
     <a href="{% url 'create_status' profile.pk %}" class="action-button">Post a New Status</a>
+    <a href="{% url 'friend_suggestions' profile.pk %}" class="action-button">Friend Suggestions</a>
     <a href="{% url 'show_all_profiles' %}" class="action-button">Back to All Profiles</a>
     <a href="{% url 'update_profile' profile.pk %}" class="action-button">Update Profile</a>
+    <a href="{% url 'news_feed' profile.pk %}" class="action-button">View News Feed</a>
+
   </div>
 </div>
 {% endblock %}
