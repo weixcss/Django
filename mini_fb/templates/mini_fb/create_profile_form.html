@@ -6,12 +6,24 @@
 
   <form method="POST">
     {% csrf_token %}
+
+    <!-- Section for User Account Information -->
+    <h3>User Account Information</h3>
     <div class="form-group">
-      {{ form.as_p }}
+      {{ user_form.as_p }} <!-- Display fields from UserCreationForm -->
     </div>
+
+    <!-- Section for Profile Information -->
+    <h3>Profile Information</h3>
+    <div class="form-group">
+      {{ form.as_p }} <!-- Display fields from CreateProfileForm -->
+    </div>
+
+    <!-- Submit Button -->
     <button type="submit" class="submit-btn">Create Profile</button>
   </form>
 
+  <!-- Back Link -->
   <a href="{% url 'show_all_profiles' %}" class="back-link">Back to All Profiles</a>
 </div>
 {% endblock %}

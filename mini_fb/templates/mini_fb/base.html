@@ -12,12 +12,30 @@
   <body>
     <header>
       <h1>Mini Facebook</h1>
+      {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }} | 
+          <a href="{% url 'logout' %}" class="logout-link" 
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        </p>
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+          {% csrf_token %}
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
     </header>
 
     <nav>
       <!-- Navigation bar -->
       <a href="{% url 'show_all_profiles' %}">View All Profiles</a>
-      <a href="{% url 'create_profile' %}">Create New Profile</a>
+      {% if user.is_authenticated %}
+        {% if user.profile %}
+          <a href="{% url 'show_profile' user.profile.pk %}">My Profile</a>
+        {% endif %}
+        <a href="{% url 'create_profile' %}">Create New Profile</a>
+      {% else %}
+        <a href="{% url 'create_profile' %}">Create New Profile</a>
+      {% endif %}
     </nav>
 
     <main>{% block content %} {% endblock %}</main>

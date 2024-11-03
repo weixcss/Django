@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -16,6 +17,7 @@ class Profile(models.Model):
     - email: email address of user
     - profile_image_url: image address of user's profile picture
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     city = models.CharField(max_length=50)

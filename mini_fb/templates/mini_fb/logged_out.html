@@ -1,0 +1,8 @@
+<!-- mini_fb/templates/mini_fb/logged_out.html -->
+{% extends "mini_fb/base.html" %}
+
+{% block content %}
+<h2>Logged Out</h2>
+<p>You have been successfully logged out.</p>
+<a href="{% url 'login' %}" class="action-button">Log In Again</a>
+{% endblock %}
