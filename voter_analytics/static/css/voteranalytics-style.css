@@ -36,18 +36,16 @@
 }
 
 .nav-button {
-  background-color: #4267B2;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
   margin-left: 10px;
 }
 
 .nav-button:hover {
-  background-color: #365899;
+  text-decoration: underline;
 }
 
 /* Main Content Styling */
