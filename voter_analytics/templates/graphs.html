@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Voter Analytics Graphs{% endblock %}
+
+{% block content %}
+<div class="graphs-container">
+    <h2 class="section-title">Voter Analytics Graphs</h2>
+    
+    <div class="graph-section">
+        <h3 class="graph-title">Distribution of Voters by Year of Birth</h3>
+        {{ voter_birth_year_histogram|safe }}
+    </div>
+
+    <div class="graph-section">
+        <h3 class="graph-title">Distribution of Voters by Party Affiliation</h3>
+        {{ voter_party_affiliation_pie|safe }}
+    </div>
+
+    <div class="graph-section">
+        <h3 class="graph-title">Vote Count by Election</h3>
+        {{ voter_election_histogram|safe }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Voter List{% endblock %}
+
+{% block content %}
+<div class="voter-list-container">
+    <h2 class="section-title">Registered Voters</h2>
+    
+    <form method="GET" class="filter-form">
+        {{ filter_form.as_p }}
+        <button type="submit" class="filter-button">Apply Filters</button>
+    </form>
+
+    <table class="voter-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Street Address</th>
+                <th>Date of Birth</th>
+                <th>Party Affiliation</th>
+                <th>Voter Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for voter in voters %}
+            <tr>
+                <td><a href="{% url 'voter' voter.pk %}">{{ voter.first_name }}</a></td>
+                <td>{{ voter.last_name }}</td>
+                <td>
+                  {% if voter.street_number %}{{ voter.street_number }} {% endif %}
+                  {% if voter.street_name %}{{ voter.street_name }}{% endif %}
+                  {% if voter.residential_address_zip_code %}, {{ voter.residential_address_zip_code }}{% endif %}
+                </td>
+                <td>{{ voter.date_of_birth }}</td>
+                <td>{{ voter.party_affiliation }}</td>
+                <td>{{ voter.voter_score }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No voters found matching your criteria.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+    <div class="pagination">
+        <span class="pagination-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="page-link">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

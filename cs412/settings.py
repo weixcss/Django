@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "formdata",
     "restaurant",
     "mini_fb",
+    "voter_analytics",
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Voter Analytics{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/voteranalytics-style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="voter-analytics-body">
+    <header class="voter-analytics-header">
+        <h1 class="app-title">Voter Analytics</h1>
+        <nav class="voter-analytics-nav">
+            <a href="{% url 'voters' %}" class="nav-link">All Voters</a>
+            <a href="{% url 'voters' %}" class="nav-link">Filter Voters</a>
+        </nav>
+    </header>
+    <main class="voter-analytics-main">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="voter-analytics-footer">
+        <p>&copy; 2024 Voter Analytics App</p>
+    </footer>
+</body>
+</html>
