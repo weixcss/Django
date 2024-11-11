@@ -9,7 +9,7 @@ class VoterListView(ListView):
     model = Voter
     template_name = 'voter_list.html'
     context_object_name = 'voters'
-    paginate_by = 100  # Show 100 records per page
+    paginate_by = 100  
 
     def get_queryset(self):
         queryset = Voter.objects.all()
