@@ -1,0 +1,12 @@
+{% extends 'weishop/base.html' %}
+
+{% block title %}Customer Details{% endblock %}
+
+{% block content %}
+<div class="customer-detail-section">
+    <h2 class="section-title">{{ customer.first_name }} {{ customer.last_name }}</h2>
+    <p class="customer-info"><strong>Email:</strong> {{ customer.email }}</p>
+    <p class="customer-info"><strong>Address:</strong> {{ customer.address }}</p>
+    <p class="customer-info"><strong>Date Joined:</strong> {{ customer.date_joined }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Weishop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/weishop-style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Weishop</h1>
+        <nav class="nav-links">
+            <a href="{% url 'customer_list' %}">Customers</a>
+            <a href="{% url 'product_list' %}">Products</a>
+            <a href="{% url 'order_list' %}">Orders</a>
+        </nav>
+    </header>
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Weishop</p>
+    </footer>
+</body>
+</html>

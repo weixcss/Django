@@ -1,0 +1,121 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  background-color: #4267B2;
+  color: white;
+  padding: 20px 0;
+}
+
+.site-title {
+  margin: 0;
+  text-align: center;
+}
+
+.navbar {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px 0;
+}
+
+/* Section Titles */
+.section-title {
+  color: #4267B2;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+/* Lists */
+.customer-list,
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.customer-item,
+.product-item {
+  margin: 10px 0;
+}
+
+.customer-link,
+.product-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.customer-link:hover,
+.product-link:hover {
+  text-decoration: underline;
+}
+
+/* Form */
+.customer-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.submit-btn {
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #365899;
+}
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}

@@ -1,0 +1,16 @@
+{% extends 'weishop/base.html' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <h2>{{ product.name }}</h2>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+    <p><strong>Stock:</strong> {{ product.stock_quantity }}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+    <a href="{% url 'product_update' product.pk %}" class="btn-edit">Edit Product</a>
+    <a href="{% url 'product_list' %}" class="btn-back">Back to List</a>
+</div>
+{% endblock %}

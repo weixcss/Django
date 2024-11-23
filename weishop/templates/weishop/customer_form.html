@@ -1,0 +1,15 @@
+{% extends 'weishop/base.html' %}
+
+{% block title %}Add/Edit Customer{% endblock %}
+
+{% block content %}
+<div class="customer-form">
+    <h2>{% if customer %}Edit{% else %}Add{% endif %} Customer</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Save</button>
+        <a href="{% url 'customer_list' %}" class="btn-cancel">Cancel</a>
+    </form>
+</div>
+{% endblock %}
