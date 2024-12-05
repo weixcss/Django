@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,5 +143,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STRIPE_PUBLIC_KEY = 'pk_live_51OWW9ZHgGedzB15MbXSbpredXOiFw5Vmi0XRM18LE2pwxr0KAQUiWH5nYsU2SFgMD1Uplf4R3VbhV7IRRt7bAt0b00jhNI8iYL'
-STRIPE_SECRET_KEY = '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'
+STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
