@@ -1,121 +1,190 @@
-body {
-  font-family: 'Roboto', sans-serif;
+/* Global Styling */
+body.body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
   background-color: #f9f9f9;
   color: #333;
 }
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+a {
+  text-decoration: none;
+  color: #4CAF50;
+}
+
+a:hover {
+  color: #edd455;
 }
 
 /* Header */
 .header {
-  background-color: #4267B2;
+  background-color: #4CAF50;
   color: white;
-  padding: 20px 0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.site-title {
-  margin: 0;
-  text-align: center;
+.title {
+  font-size: 24px;
+  font-weight: bold;
 }
+
+.title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 
 .navbar {
-  text-align: center;
-  margin-top: 10px;
+  display: flex;
+  gap: 15px;
 }
 
-.nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  gap: 20px;
-}
-
-.nav-link {
-  text-decoration: none;
+.nav-link, .cart-link {
   color: white;
+  font-size: 16px;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+.cart-count {
+  font-weight: bold;
+  color: yellow;
 }
 
 /* Main Content */
 .main-content {
-  padding: 20px 0;
-}
-
-/* Section Titles */
-.section-title {
-  color: #4267B2;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.5em;
-}
-
-/* Lists */
-.customer-list,
-.product-list {
-  list-style: none;
-  padding: 0;
-}
-
-.customer-item,
-.product-item {
-  margin: 10px 0;
-}
-
-.customer-link,
-.product-link {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-.customer-link:hover,
-.product-link:hover {
-  text-decoration: underline;
-}
-
-/* Form */
-.customer-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.submit-btn {
-  background-color: #4267B2;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-  background-color: #365899;
 }
 
 /* Footer */
 .footer {
-  background-color: #333;
+  background-color: #4CAF50;
   color: white;
   text-align: center;
   padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.btn-remove {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-remove:hover {
+  background-color: #d32f2f;
+}
+
+.btn-create, .btn-edit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-create:hover, .btn-edit:hover {
+  background-color: #45a049;
+}
+
+/* Links */
+.back-link, .add-to-cart-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.add-to-cart-btn:hover, .back-link:hover {
+  background-color: #45a049;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Cart Page */
+.cart-page {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-table th, .cart-table td {
+  padding: 10px;
+}
+
+.cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
   margin-top: 20px;
 }

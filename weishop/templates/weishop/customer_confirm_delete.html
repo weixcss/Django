@@ -3,12 +3,13 @@
 {% block title %}Delete Customer{% endblock %}
 
 {% block content %}
-<div class="customer-delete">
-    <h2>Are you sure you want to delete {{ customer.first_name }} {{ customer.last_name }}?</h2>
-    <form method="post">
+<div class="delete-confirm-container">
+    <h2 class="delete-title">Delete Customer</h2>
+    <p class="delete-text">Are you sure you want to delete {{ customer.first_name }} {{ customer.last_name }}?</p>
+    <form method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn-confirm">Yes, Delete</button>
-        <a href="{% url 'customer_list' %}" class="btn-cancel">Cancel</a>
+        <button type="submit" class="delete-confirm-btn">Yes, Delete</button>
+        <a href="{% url 'customer_list' %}" class="cancel-btn">Cancel</a>
     </form>
 </div>
 {% endblock %}

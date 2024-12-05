@@ -102,3 +102,4 @@ class GraphsView(ListView):
         context['voter_election_histogram'] = fig_election.to_html(full_html=False)
 
         return context
+    

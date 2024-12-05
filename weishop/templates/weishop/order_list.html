@@ -3,30 +3,30 @@
 {% block title %}Order List{% endblock %}
 
 {% block content %}
-<div class="order-list">
-    <h2>All Orders</h2>
+<div class="order-list-container">
+    <h2 class="section-title">Order List</h2>
     <table class="order-table">
         <thead>
             <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
                 <th>Order Date</th>
                 <th>Status</th>
                 <th>Total Price</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for order in orders %}
             <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
                 <td>{{ order.order_date }}</td>
                 <td>{{ order.status }}</td>
                 <td>{{ order.total_price }}</td>
-                <td>
-                    <a href="{% url 'order_detail' order.pk %}">View</a>
-                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">No orders available.</td>
+                <td colspan="5">No orders found.</td>
             </tr>
             {% endfor %}
         </tbody>

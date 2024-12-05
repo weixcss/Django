@@ -1,5 +1,6 @@
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,21 +8,29 @@
     <title>{% block title %}Weishop{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/weishop-style.css' %}">
 </head>
-<body>
-    <header class="navbar">
-        <h1>Weishop</h1>
-        <nav class="nav-links">
-            <a href="{% url 'customer_list' %}">Customers</a>
-            <a href="{% url 'product_list' %}">Products</a>
-            <a href="{% url 'order_list' %}">Orders</a>
+<body class="body">
+    <header class="header">
+        <a href="{% url 'product_list' %}" class="title-link">
+            <h1 class="title">Weishop</h1>
+        </a>
+        <nav class="navbar">
+            <a href="{% url 'customer_list' %}" class="nav-link">Customers</a>
+            <a href="{% url 'product_list' %}" class="nav-link">Products</a>
+            <a href="{% url 'order_list' %}" class="nav-link">Orders</a>
+            <a href="{% url 'cart_view' %}" class="cart-link">
+                Cart 
+                <span class="cart-count">({{ cart_count }})</span>
+            </a>
         </nav>
     </header>
+
     <main class="main-content">
         {% block content %}
         {% endblock %}
     </main>
+
     <footer class="footer">
-        <p>&copy; 2024 Weishop</p>
+        <p>&copy; 2024 Weishop. All rights reserved.</p>
     </footer>
 </body>
 </html>

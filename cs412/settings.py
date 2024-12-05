@@ -70,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'weishop.context_processors.cart_context',
+                'weishop.context_processors.stripe_public_key',
             ],
         },
     },
@@ -138,3 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STRIPE_PUBLIC_KEY = 'pk_live_51OWW9ZHgGedzB15MbXSbpredXOiFw5Vmi0XRM18LE2pwxr0KAQUiWH5nYsU2SFgMD1Uplf4R3VbhV7IRRt7bAt0b00jhNI8iYL'
+STRIPE_SECRET_KEY = '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'
