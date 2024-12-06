@@ -25,10 +25,12 @@
                 <td>{{ item.quantity }}</td>
                 <td>${{ item.subtotal|floatformat:2 }}</td>
                 <td>
+                    {% if user.is_authenticated %}
                     <form method="POST" action="{% url 'cart_remove' item.id %}">
                         {% csrf_token %}
                         <button type="submit" class="btn-remove">Remove</button>
                     </form>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

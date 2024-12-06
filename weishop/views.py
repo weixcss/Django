@@ -8,6 +8,7 @@ from .models import Customer, Product, Order, OrderItem, Cart, CartItem
 import stripe
 from django.http import JsonResponse
 from django.conf import settings
+from django.utils import timezone
 
 
 # Define the CustomerForm
@@ -111,16 +112,26 @@ def add_to_cart(request, product_id):
     if product.stock_quantity <= 0:
         return redirect('product_list')
 
-    # Get or create the user's cart
-    cart, created = Cart.objects.get_or_create(user=request.user)
-
-    # Check if the product is already in the cart
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    if not created:
-        cart_item.quantity += 1
-        cart_item.save()
+    # Use session-based cart for anonymous users
+    if not request.user.is_authenticated:
+        cart = request.session.get('cart', {})
+        if str(product_id) in cart:
+            cart[str(product_id)]['quantity'] += 1
+        else:
+            cart[str(product_id)] = {
+                'name': product.name,
+                'price': float(product.price),
+                'quantity': 1,
+            }
+        request.session['cart'] = cart
     else:
-        cart_item.quantity = 1
+        # Handle authenticated users' carts
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if not created:
+            cart_item.quantity += 1
+        else:
+            cart_item.quantity = 1
         cart_item.save()
 
     # Reduce the stock quantity
@@ -132,13 +143,22 @@ def add_to_cart(request, product_id):
 # View Cart
 @login_required
 def view_cart(request):
-    cart, created = Cart.objects.get_or_create(user=request.user)
-    cart_items = cart.cartitem_set.all()
+    cart_items = []
+    total_price = 0
 
-    for item in cart_items:
-        item.subtotal = item.product.price * item.quantity  # Add subtotal attribute to each item
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_items = cart.cartitem_set.all()
+        for item in cart_items:
+            item.subtotal = item.product.price * item.quantity
+        total_price = sum(item.subtotal for item in cart_items)
+    else:
+        # Retrieve session-based cart for anonymous users
+        cart = request.session.get('cart', {})
+        cart_items = [{'name': data['name'], 'price': data['price'], 'quantity': data['quantity'], 
+                       'subtotal': data['price'] * data['quantity']} for data in cart.values()]
+        total_price = sum(item['subtotal'] for item in cart_items)
 
-    total_price = sum(item.subtotal for item in cart_items)  # Calculate total price
     return render(request, 'weishop/cart.html', {
         'cart_items': cart_items,
         'total_price': total_price,
@@ -159,35 +179,46 @@ def remove_from_cart(request, cart_item_id):
     return redirect('cart_view')
 
 def checkout(request):
-    if not request.user.is_authenticated:
-        return redirect('login')  # Redirect to login if user is not authenticated
-
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
-    # Retrieve the user's cart and items
-    cart = Cart.objects.filter(user=request.user).first()
-    if not cart:
-        return redirect('cart_view')  # Redirect if no cart found
-
-    cart_items = cart.cartitem_set.all()
-    if not cart_items:
-        return redirect('cart_view')  # Redirect if cart is empty
-
-    # Create line items for Stripe
-    line_items = []
-    for item in cart_items:
-        line_items.append({
-            'price_data': {
-                'currency': 'usd',
-                'product_data': {
-                    'name': item.product.name,
+    # Handle authenticated users
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user).first()
+        cart_items = cart.cartitem_set.all() if cart else []
+        line_items = [
+            {
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {'name': item.product.name},
+                    'unit_amount': int(item.product.price * 100),  # Convert dollars to cents
                 },
-                'unit_amount': int(item.product.price * 100),  # Convert dollars to cents
-            },
-            'quantity': item.quantity,
-        })
+                'quantity': item.quantity,
+            }
+            for item in cart_items
+        ]
+    else:
+        # Retrieve session-based cart for anonymous users
+        cart_data = request.session.get('cart', {})
+        cart_items = [
+            {'name': data['name'], 'price': data['price'], 'quantity': data['quantity']}
+            for data in cart_data.values()
+        ]
+        line_items = [
+            {
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {'name': item['name']},
+                    'unit_amount': int(item['price'] * 100),  # Convert dollars to cents
+                },
+                'quantity': item['quantity'],
+            }
+            for item in cart_items
+        ]
 
-    # Stripe Checkout Session
+    if not line_items:
+        return redirect('cart_view')  # Redirect if the cart is empty
+
+    # Create a Stripe Checkout session
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=line_items,
@@ -195,39 +226,18 @@ def checkout(request):
         success_url=request.build_absolute_uri('/weishop/checkout/success/'),
         cancel_url=request.build_absolute_uri('/weishop/cart/'),
     )
+
     return JsonResponse({'id': session.id})
 
 def checkout_success(request):
-    if not request.user.is_authenticated:
-        return redirect('login')  # Ensure user is logged in
+    if request.user.is_authenticated:
+        # Clear the authenticated user's cart
+        cart = Cart.objects.filter(user=request.user).first()
+        if cart:
+            cart.cartitem_set.all().delete()
+            cart.delete()
+    else:
+        # Clear the session-based cart for anonymous users
+        request.session.pop('cart', None)
 
-    # Retrieve the user's cart
-    cart = Cart.objects.filter(user=request.user).first()
-    if cart:
-        # Create a new Order
-        order = Order.objects.create(
-            customer=request.user.customer,  # Assuming user has a related customer
-            order_date=timezone.now(),
-            status='Pending',
-            total_price=cart.total_price()
-        )
-
-        # Create OrderItems from the cart items
-        cart_items = cart.cartitem_set.all()
-        for item in cart_items:
-            OrderItem.objects.create(
-                order=order,
-                product=item.product,
-                quantity=item.quantity,
-                subtotal=item.product.price * item.quantity,
-            )
-
-            # Optionally: Reduce product stock (already done when adding to cart)
-            # item.product.stock_quantity -= item.quantity
-            # item.product.save()
-
-        # Clear the cart
-        cart_items.delete()
-        cart.delete()
-
-    return render(request, 'weishop/checkout_success.html', {'order': order})
+    return render(request, 'weishop/checkout_success.html')
