@@ -105,7 +105,6 @@ class OrderItemDetailView(DetailView):
     context_object_name = 'orderitem'
 
 # Add to Cart
-@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
@@ -141,7 +140,6 @@ def add_to_cart(request, product_id):
     return redirect('cart_view')
 
 # View Cart
-@login_required
 def view_cart(request):
     cart_items = []
     total_price = 0
@@ -165,7 +163,6 @@ def view_cart(request):
     })
 
 # Remove from Cart
-@login_required
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id, cart__user=request.user)
 
