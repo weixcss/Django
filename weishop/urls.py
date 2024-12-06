@@ -46,8 +46,8 @@ urlpatterns = [
 
     # Cart-related URLs
     path('cart/', view_cart, name='cart_view'),
-    path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),  # Fixed the pattern name
-    path('cart/remove/<int:cart_item_id>/', remove_from_cart, name='cart_remove'),
+    path('cart/add/<int:product_id>/', add_to_cart, name='add_to_cart'),  
+    path('cart/remove/<int:product_id>/', remove_from_cart, name='cart_remove'),
 
     path('checkout/', checkout, name='checkout'),
     path('checkout/success/', checkout_success, name='checkout_success'),
