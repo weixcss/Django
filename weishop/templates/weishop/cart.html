@@ -27,7 +27,6 @@
                         {{ item.name }}
                     {% endif %}
                 </td>
-                <!-- Conditional rendering for price -->
                 <td>
                     {% if item.product %}
                         ${{ item.product.price|floatformat:2 }}

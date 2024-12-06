@@ -115,11 +115,8 @@ class OrderDetailView(DetailView):
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    if product.stock_quantity <= 0:
-        return redirect('product_list')
-
+    # Use session-based cart for anonymous users
     if not request.user.is_authenticated:
-        # Session-based cart
         cart = request.session.get('cart', {})
         if str(product_id) in cart:
             cart[str(product_id)]['quantity'] += 1
@@ -131,16 +128,16 @@ def add_to_cart(request, product_id):
             }
         request.session['cart'] = cart
     else:
-        # Database cart for authenticated users
+        # Handle authenticated users' carts
         cart, created = Cart.objects.get_or_create(user=request.user)
         cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
         if not created:
             cart_item.quantity += 1
+        else:
+            cart_item.quantity = 1
         cart_item.save()
 
-    product.stock_quantity -= 1
-    product.save()
-
+    # Do NOT reduce stock quantity here
     return redirect('cart_view')
 
 
@@ -240,11 +237,39 @@ def checkout(request):
 
 def checkout_success(request):
     if request.user.is_authenticated:
+        # Clear the authenticated user's cart and reduce stock
         cart = Cart.objects.filter(user=request.user).first()
         if cart:
+            for cart_item in cart.cartitem_set.all():
+                # Reduce product stock
+                cart_item.product.stock_quantity -= cart_item.quantity
+                cart_item.product.save()
+
+                # Create Order and OrderItem records (if needed)
+                order, created = Order.objects.get_or_create(
+                    customer=request.user.customer,
+                    defaults={
+                        'order_date': timezone.now(),
+                        'status': 'Pending',
+                        'total_price': cart.total_price(),
+                    },
+                )
+                OrderItem.objects.create(
+                    order=order,
+                    product=cart_item.product,
+                    quantity=cart_item.quantity,
+                    subtotal=cart_item.subtotal(),
+                )
+            # Clear the cart
             cart.cartitem_set.all().delete()
             cart.delete()
     else:
+        # Clear the session-based cart for anonymous users
+        cart = request.session.get('cart', {})
+        for product_id, item in cart.items():
+            product = get_object_or_404(Product, id=product_id)
+            product.stock_quantity -= item['quantity']
+            product.save()
         request.session.pop('cart', None)
 
     return render(request, 'weishop/checkout_success.html')
