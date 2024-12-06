@@ -20,10 +20,29 @@
         <tbody>
             {% for item in cart_items %}
             <tr>
-                <td>{{ item.name|default:item.product.name }}</td>
-                <td>${{ item.price|floatformat:2 }}</td>
+                <td>
+                    {% if item.product %}
+                        {{ item.product.name }}
+                    {% else %}
+                        {{ item.name }}
+                    {% endif %}
+                </td>
+                <!-- Conditional rendering for price -->
+                <td>
+                    {% if item.product %}
+                        ${{ item.product.price|floatformat:2 }}
+                    {% else %}
+                        ${{ item.price|floatformat:2 }}
+                    {% endif %}
+                </td>
                 <td>{{ item.quantity }}</td>
-                <td>${{ item.subtotal|floatformat:2 }}</td>
+                <td>
+                    {% if item.product %}
+                        ${{ item.product.price|floatformat:2 }}
+                    {% else %}
+                        ${{ item.subtotal|floatformat:2 }}
+                    {% endif %}
+                </td>
                 <td>
                     {% if user.is_authenticated %}
                     <!-- Authenticated users -->
