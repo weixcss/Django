@@ -1,0 +1,42 @@
+{% extends 'weishop/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Create an Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+        </p>
+        <p>
+            <label for="id_first_name">First Name:</label>
+            {{ form.first_name }}
+        </p>
+        <p>
+            <label for="id_last_name">Last Name:</label>
+            {{ form.last_name }}
+        </p>
+        <p>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </p>
+        <p>
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+        </p>
+        <p>
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+        </p>
+        <p>
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+        </p>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+</div>
+{% endblock %}

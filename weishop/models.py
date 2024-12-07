@@ -32,13 +32,14 @@ class Order(models.Model):
         ('Cancelled', 'Cancelled'),
     ]
 
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)  # Allow null for anonymous orders
     order_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pending')
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    address = models.TextField(blank=True, null=True)  # New field for address
 
     def __str__(self):
-        return f"Order #{self.id} - {self.customer}"
+        return f"Order #{self.id} - {self.customer or 'Anonymous'}"
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

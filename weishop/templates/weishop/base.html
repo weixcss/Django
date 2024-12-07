@@ -5,18 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Weishop{% endblock %}</title>
+    <title>{% block title %}Wei's Secret Shop{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/weishop-style.css' %}">
 </head>
 <body class="body">
     <header class="header">
         <a href="{% url 'product_list' %}" class="title-link">
-            <h1 class="title">Weishop</h1>
+            <h1 class="title">Wei's Secret Shop</h1>
         </a>
         <nav class="navbar">
-            <a href="{% url 'customer_list' %}" class="nav-link">Customers</a>
             <a href="{% url 'product_list' %}" class="nav-link">Products</a>
+            <a href="{% url 'customer_list' %}" class="nav-link">Customers</a>
             <a href="{% url 'order_list' %}" class="nav-link">Orders</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer; padding: 0; color: inherit;">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+                <a href="{% url 'register' %}" class="nav-link">Register</a>
+            {% endif %}
+
             <a href="{% url 'cart_view' %}" class="cart-link">
                 Cart 
                 <span class="cart-count">({{ cart_count }})</span>
@@ -30,7 +42,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Weishop. All rights reserved.</p>
+        <p>&copy; 2025 Wei Zhu. All rights reserved.</p>
     </footer>
 </body>
 </html>

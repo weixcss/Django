@@ -1,11 +1,39 @@
 {% extends 'weishop/base.html' %}
 
-{% block title %}Checkout Success{% endblock %}
+{% block title %}Order Confirmation{% endblock %}
 
 {% block content %}
-<div class="success-container">
-    <h2 class="section-title">Thank you for your purchase!</h2>
-    <p>Your order has been successfully placed.</p>
-    <a href="{% url 'product_list' %}" class="btn-back">Continue Shopping</a>
+<div class="checkout-success">
+    {% if order %}
+    <h2>Order Confirmation</h2>
+    <p>Thank you for your purchase! Your order has been successfully placed.</p>
+    <h3>Order Details:</h3>
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.orderitem_set.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>${{ item.product.price|floatformat:2 }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.subtotal|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4>Total Price: ${{ order.total_price|floatformat:2 }}</h4>
+    <p>Order Status: {{ order.get_status_display }}</p>
+    {% else %}
+    <h2>No Order Found</h2>
+    <p>There was an issue with your checkout. Please try again.</p>
+    {% endif %}
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Continue Shopping</a>
 </div>
 {% endblock %}

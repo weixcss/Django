@@ -19,10 +19,16 @@
             {% for order in orders %}
             <tr>
                 <td>{{ order.id }}</td>
-                <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
+                <td>
+                    {% if order.customer %}
+                        {{ order.customer.first_name }} {{ order.customer.last_name }}
+                    {% else %}
+                        Guest Buyer
+                    {% endif %}
+                </td>
                 <td>{{ order.order_date }}</td>
                 <td>{{ order.status }}</td>
-                <td>{{ order.total_price }}</td>
+                <td>${{ order.total_price|floatformat:2 }}</td>
             </tr>
             {% empty %}
             <tr>

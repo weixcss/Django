@@ -1,6 +1,7 @@
 from django.urls import path
 from django.shortcuts import redirect  # For redirecting to another page
 from . import views
+from django.contrib.auth.views import LogoutView
 
 from .views import (
     CustomerListView,
@@ -20,11 +21,14 @@ from .views import (
     remove_from_cart,
     checkout, 
     checkout_success,
+    user_login,
+    user_register,
+    user_profile,
 )
 
 urlpatterns = [
     # Redirect root URL of the app to the customer list view
-    path('', lambda request: redirect('customer_list'), name='weishop_home'),
+    path('', lambda request: redirect('product_list'), name='weishop_home'),
 
     # Customer-related URLs
     path('customers/', CustomerListView.as_view(), name='customer_list'),
@@ -51,4 +55,9 @@ urlpatterns = [
 
     path('checkout/', checkout, name='checkout'),
     path('checkout/success/', checkout_success, name='checkout_success'),
+
+    path('login/', user_login, name='login'),
+    path('register/', user_register, name='register'),
+    path('profile/', user_profile, name='profile'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
