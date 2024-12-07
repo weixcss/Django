@@ -6,11 +6,26 @@
 <div class="customer-detail-container">
     <h2 class="detail-title">Customer Details</h2>
     <table class="detail-table">
-        <tr><td class="detail-label">First Name:</td><td>{{ customer.first_name }}</td></tr>
-        <tr><td class="detail-label">Last Name:</td><td>{{ customer.last_name }}</td></tr>
-        <tr><td class="detail-label">Email:</td><td>{{ customer.email }}</td></tr>
-        <tr><td class="detail-label">Address:</td><td>{{ customer.address }}</td></tr>
-        <tr><td class="detail-label">Date Joined:</td><td>{{ customer.date_joined }}</td></tr>
+        <tr>
+            <td class="detail-label">First Name:</td>
+            <td>{{ customer.first_name }}</td>
+        </tr>
+        <tr>
+            <td class="detail-label">Last Name:</td>
+            <td>{{ customer.last_name }}</td>
+        </tr>
+        <tr>
+            <td class="detail-label">Email:</td>
+            <td>{{ customer.email }}</td>
+        </tr>
+        <tr>
+            <td class="detail-label">Address:</td>
+            <td>{{ customer.address }}</td>
+        </tr>
+        <tr>
+            <td class="detail-label">Date Joined:</td>
+            <td>{{ customer.date_joined }}</td>
+        </tr>
     </table>
     <a href="{% url 'customer_update' customer.pk %}" class="edit-btn">Edit Customer</a>
     <a href="{% url 'customer_list' %}" class="back-btn">Back to Customers</a>

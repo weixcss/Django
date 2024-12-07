@@ -21,9 +21,9 @@
                 <td>{{ order.id }}</td>
                 <td>
                     {% if order.customer %}
-                        {{ order.customer.first_name }} {{ order.customer.last_name }}
+                    {{ order.customer.first_name }} {{ order.customer.last_name }}
                     {% else %}
-                        Guest Buyer
+                    Guest Buyer
                     {% endif %}
                 </td>
                 <td>{{ order.order_date }}</td>

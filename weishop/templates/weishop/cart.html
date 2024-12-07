@@ -22,24 +22,24 @@
             <tr>
                 <td>
                     {% if item.product %}
-                        {{ item.product.name }}
+                    {{ item.product.name }}
                     {% else %}
-                        {{ item.name }}
+                    {{ item.name }}
                     {% endif %}
                 </td>
                 <td>
                     {% if item.product %}
-                        ${{ item.product.price|floatformat:2 }}
+                    ${{ item.product.price|floatformat:2 }}
                     {% else %}
-                        ${{ item.price|floatformat:2 }}
+                    ${{ item.price|floatformat:2 }}
                     {% endif %}
                 </td>
                 <td>{{ item.quantity }}</td>
                 <td>
                     {% if item.product %}
-                        ${{ item.product.price|floatformat:2 }}
+                    ${{ item.product.price|floatformat:2 }}
                     {% else %}
-                        ${{ item.subtotal|floatformat:2 }}
+                    ${{ item.subtotal|floatformat:2 }}
                     {% endif %}
                 </td>
                 <td>
@@ -97,33 +97,43 @@
     document.querySelectorAll('.btn-remove').forEach(button => {
         button.addEventListener('click', function () {
             const productId = this.getAttribute('data-product-id');
-            
-            // Safeguard: Ensure productId is defined and valid
+
             if (!productId || isNaN(productId)) {
                 console.error('Invalid product ID:', productId);
                 return;
             }
 
-            // Perform fetch request to remove item from the cart
             fetch(`/weishop/cart/remove/${productId}/`, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': '{{ csrf_token }}',
+                    'X-Requested-With': 'XMLHttpRequest', // Indicate an AJAX request
                 },
             })
-                .then(response => {
-                    if (response.ok) {
-                        // Remove the row without reloading the page
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cart_count !== undefined) {
+                        // Update the cart count in the navbar
+                        const cartCountElement = document.querySelector('.cart-count');
+                        if (cartCountElement) {
+                            cartCountElement.textContent = `(${data.cart_count})`;
+                        }
+
+                        // Remove the row from the table
                         const row = this.closest('tr');
                         if (row) {
                             row.remove();
                         }
-                        updateCartTotal(); // Recalculate the total dynamically
-                    } else {
-                        response.json().then(data => {
-                            console.error('Error Response:', data);
-                            alert('Failed to remove item from cart.');
-                        });
+
+                        // Check if cart is empty and update display
+                        const cartTable = document.querySelector('.cart-table tbody');
+                        if (!cartTable.querySelector('tr')) {
+                            document.querySelector('.cart-page').innerHTML = `
+                            <p>Your cart is empty. <a href="{% url 'product_list' %}">Continue Shopping</a>.</p>
+                        `;
+                        }
+                    } else if (data.error) {
+                        alert(data.error);
                     }
                 })
                 .catch(error => {
