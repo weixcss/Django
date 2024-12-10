@@ -424,6 +424,12 @@ def user_register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
+            # Check if email already exists
+            email = form.cleaned_data.get('email')
+            if Customer.objects.filter(email=email).exists():
+                messages.error(request, "An account with this email already exists.")
+                return render(request, 'weishop/register.html', {'form': form})
+
             user = form.save()
 
             # Create a Customer profile with the extra fields
@@ -431,7 +437,7 @@ def user_register(request):
                 user=user,
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name'],
-                email=form.cleaned_data['email'],
+                email=email,
                 address=form.cleaned_data['address'],
             )
 
